@@ -14,28 +14,32 @@ matrix:
   fast_finish: true
   include:
     - php: 7.2
-      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_PHPUNIT_VERSION="7.4"
-    - php: 7.2
-      env: SYMFONY_PHPUNIT_VERSION="7.4"
+      install:
+        - travis_retry composer update -n --prefer-lowest --prefer-stable --prefer-dist
     - php: 7.3
-      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text" SYMFONY_PHPUNIT_VERSION="7.4"
+      env: SYMFONY_REQUIRE="3.4.*"
+    - php: 7.3
+      env: SYMFONY_REQUIRE="4.3.*"
+    - php: 7.3
+      env: SYMFONY_REQUIRE="4.4.*"
+    - php: 7.3
+      env: SYMFONY_REQUIRE="5.0.*"
+    - php: 7.3
     - php: 7.4snapshot
-      env: SYMFONY_PHPUNIT_VERSION="7.4"
-    - php: 7.4snapshot
-      env: STABILITY="dev" SYMFONY_PHPUNIT_VERSION="7.4"
+    - php: 7.3
+      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
 
   allow_failures:
-    - env: STABILITY="dev"
+    - env: COVERAGE=true
 
 before_install:
   - if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
-  - if ! [ -z "$STABILITY" ]; then composer config minimum-stability ${STABILITY}; fi;
-  - if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES}; fi;
+  - composer self-update
+  - composer global require --no-scripts --no-plugins symfony/flex
 
 install:
-  - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
-  - ./vendor/bin/simple-phpunit install
+  - travis_retry composer update ${COMPOSER_FLAGS} -n --prefer-dist --prefer-stable
 
 script:
   - composer validate --strict --no-check-lock
-  - ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS
+  - vendor/bin/phpunit

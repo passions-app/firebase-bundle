@@ -18,13 +18,13 @@ class FirebaseExtensionTest extends TestCase
     /** @var FirebaseExtension */
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->extension = new FirebaseExtension();
     }
 
     /** @test */
-    public function a_project_is_created_with_a_service_for_each_feature()
+    public function a_project_is_created_with_a_service_for_each_feature(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -54,7 +54,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function a_project_can_have_an_alias()
+    public function a_project_can_have_an_alias(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -69,7 +69,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function a_project_can_be_private()
+    public function a_project_can_be_private(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -86,7 +86,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function it_can_provide_multiple_projects()
+    public function it_can_provide_multiple_projects(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -104,7 +104,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function it_supports_specifying_credentials()
+    public function it_supports_specifying_credentials(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -118,7 +118,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function it_accepts_only_one_default_project()
+    public function it_accepts_only_one_default_project(): void
     {
         $this->expectException(InvalidConfigurationException::class);
 
@@ -137,7 +137,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function it_aliases_the_firebase_class_to_the_default_project()
+    public function it_aliases_the_firebase_class_to_the_default_project(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -155,7 +155,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function it_aliases_the_firebase_class_to_the_only_project()
+    public function it_aliases_the_firebase_class_to_the_only_project(): void
     {
         $container = $this->createContainer([
             'projects' => [
@@ -169,7 +169,7 @@ class FirebaseExtensionTest extends TestCase
     }
 
     /** @test */
-    public function it_has_no_default_project_if_none_could_be_determined()
+    public function it_has_no_default_project_if_none_could_be_determined(): void
     {
         $container = $this->createContainer([
             'projects' => [

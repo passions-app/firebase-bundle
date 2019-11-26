@@ -17,9 +17,6 @@ use Throwable;
 class FirebaseExtension extends Extension
 {
     /**
-     * @param array $configs
-     * @param ContainerBuilder $container
-     *
      * @throws Throwable
      */
     public function load(array $configs, ContainerBuilder $container)

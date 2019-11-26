@@ -15,7 +15,7 @@ class ProjectFactoryTest extends TestCase
 
     private $firebaseFactory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->firebaseFactory = $this->createMock(FirebaseFactory::class);
         $this->factory = new ProjectFactory($this->firebaseFactory);
@@ -26,7 +26,7 @@ class ProjectFactoryTest extends TestCase
      * @group legacy
      * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
-    public function it_can_handle_a_custom_database_uri()
+    public function it_can_handle_a_custom_database_uri(): void
     {
         $this->firebaseFactory
             ->expects($this->once())
@@ -41,7 +41,7 @@ class ProjectFactoryTest extends TestCase
      * @group legacy
      * @expectedDeprecation The %s method is deprecated (4.33 Use the component-specific create*() methods instead.).
      */
-    public function it_can_handle_a_credentials_path()
+    public function it_can_handle_a_credentials_path(): void
     {
         $this->firebaseFactory
             ->expects($this->once())
