@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Dropped support for Symfony 2.x
+* Dropped support for PHP <7.2
 
 ## 1.7.0 - 2019-11-26
 
