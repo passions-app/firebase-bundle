@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+* Dropped support for unsupported Symfony releases (^2.8, 4.0.x, 4.1.x)
+
 ## 1.7.0 - 2019-11-26
 
 * Added support for Symfony 5.x
